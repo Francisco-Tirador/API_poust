@@ -10,6 +10,7 @@ const users=[
         phone: "5612587665",
         age: 21,
         rol: "normal",
+        upIMG:'',
         active: true,
         verified: false
       },
@@ -20,7 +21,8 @@ const users=[
         password: "$2b$10$OCE5UWhvY3iOXCL9n6UsCuMV8u2khOG7PhiPgIxkqFhBhlJhNz8da",
         phone: "5612587665",
         age: 21,
-        rol: "normal",
+        rol: "ADMIN",
+        upIMG:'',
         active: true,
         verified: false
       }
@@ -45,6 +47,7 @@ const createUser=(data)=>{
             password:encriptPassword(data.password),
             phone:data.phone,
             age: data.age,
+            upIMG:data.upIMG?data.upIMG:'',
             rol: "normal",
             active: true,
             verified: false
@@ -64,6 +67,8 @@ const deleteUser=(id,idUS)=>{
     }}else{ return false}
    
 }
+
+
 ////////////////////////////////////////////////
 const upDateUser=(data,id,idUS)=>{
     const index=users.findIndex(item=>item.id===id)
@@ -76,6 +81,7 @@ const upDateUser=(data,id,idUS)=>{
                 password:users[index].password,
                 phone:data.phone,
                 age: data.age,
+                upIMG:data.upIMG,
                 rol:users[index].rol,
                 active:users[index].active,
                 verified: users[index].verified
@@ -88,7 +94,49 @@ const login=(emeil)=>{
     const index=users.findIndex(item=>item.emeil===emeil)
     return users[index]
 }
-console.log(login("Franco@gmail.com"))
+
+////////////////////////////////////////////////
+
+const GetMyuser=(id)=>{
+    const index=users.findIndex(item=>item.id===id)
+    return index===1?users[index]:false
+}
+////////////////////////////////////////////////
+const removeMyUser=(id)=>{
+    const index=users.findIndex(item=>item.id===id)
+    if(index!==-1){users.splice(index,1)
+        return true
+    }
+    return false
+}
+////////////////////////////////////////////////
+const upMyuser=(data,id)=>{
+    const index=users.findIndex(item=>item.id===id)
+    if(index!==-1){
+        users[index]={
+                id:users[index].id,
+                name: data.name,
+                emeil:data.emeil,
+                password:users[index].password,
+                phone:data.phone,
+                upIMG:data.upIMG,
+                age: data.age,
+                rol:users[index].rol,
+                active:users[index].active,
+                verified: users[index].verified
+        }
+        return users[index]
+    } return false
+}
+////////////////////////////////////////////////
+const updataIMG=(idUSER,imgURL)=>{
+    const index=users.findIndex(item=>item.id===idUSER)
+    if(index !==-1){
+        users[index].upIMG=imgURL
+        return users[index]
+    }
+    return false
+}
 ////////////////////////////////////////////////
 module.exports={
     getUser,
@@ -96,6 +144,10 @@ module.exports={
     createUser,
     deleteUser,
     upDateUser,
-    login
+    login,
+    GetMyuser,
+    removeMyUser,
+    upMyuser,
+    updataIMG
 }
 ////////////////////////////////////////////////

@@ -4,6 +4,7 @@ const http=require('./poust.http')
 const passport=require('passport')
 require('../auth/authMidelwere')(passport)
 ////////////////////////////////////////////
+  
 
 router.route('/post')
         .get(http.getPoust)

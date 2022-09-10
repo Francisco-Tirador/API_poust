@@ -9,6 +9,7 @@ const login=(req,res)=>{
             id:accion.id,
             name:accion.name,
             emeil:accion.emeil,
+            rol:accion.rol
         },'Goku')
         res.status(200).json({token:token})}
     else{res.status(404).json({ERR:'the data it is not default'})}

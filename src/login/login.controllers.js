@@ -9,6 +9,6 @@ const Login=(data)=>{
         if(comprovacion){return loginEmeil}else{return false}
     }
 }
-console.log(Login({emeil:"Roshlandia@gmail.com",password:"Goku1234"}))
+// console.log(Login({emeil:"Roshlandia@gmail.com",password:"Goku1234"}))
 
 exports.Login=Login
